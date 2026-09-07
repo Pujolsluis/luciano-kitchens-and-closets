@@ -13,7 +13,7 @@ export function Header({lang,kind}: {lang:Language;kind:string}) {
   <a className="skip-link" href="#main">{c.skip}</a>
   <div className="topline"><span>{c.topline}</span><a href={'tel:'+business.telephone} data-track="phone_click"><Phone size={13}/>{business.phone}</a></div>
   <header className="header wrap">
-   <a href={home} aria-label={business.name}><img className="brand" src={imagePath(logoImage,720)} width="180" height="72" alt={business.name}/></a>
+   <a href={home} aria-label={business.name}><img className="brand" src={imagePath(logoImage,720)} width="215" height="86" alt={business.name}/></a>
    <nav aria-label={lang==='en'?'Main navigation':'Navegación principal'}>{c.nav.map((n,i)=><a key={n} href={home+['#work','#services','#story'][i]}>{n}</a>)}</nav>
    <div className="header-actions">
     <a className="language" href={path(alternatePath(other,kind))} hrefLang={other} lang={other} aria-label={lang==='en'?'Ver en español':'View in English'}>{other.toUpperCase()}</a>
