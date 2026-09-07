@@ -21,9 +21,9 @@ img { display:block; max-width:100%; } svg { flex-shrink:0; }
 .wrap { width:min(1400px,calc(100% - 100px)); margin-inline:auto; }
 .topline { padding:8px 50px; background:#254438; color:#fff; display:flex; justify-content:space-between; font-size:.7rem; letter-spacing:.13em; }
 .topline a { display:flex; align-items:center; gap:8px; letter-spacing:.03em; font-size:.8rem; }
-.header { min-height:128px; display:flex; align-items:center; justify-content:space-between; gap:35px; }
+.header { min-height:160px; display:flex; align-items:center; justify-content:space-between; gap:35px; }
 .brand { width:176px; height:70px; object-fit:contain; }
-.header .brand { width:215px; height:86px; }
+.header .brand { width:340px; height:136px; }
 .header nav { display:flex; gap:32px; margin-left:auto; font-size:.875rem; font-weight:500; }
 .header nav a:hover,.text-link:hover { color:var(--primary); text-decoration:underline; text-underline-offset:6px; }
 .header-actions { display:flex; align-items:center; gap:28px; }
@@ -51,8 +51,9 @@ h1 em { font-family:Georgia,serif; font-weight:400; color:var(--primary); letter
 .section { padding-block:100px; } h2 { font-size:clamp(2.25rem,3.3vw,3.5rem); font-weight:400; letter-spacing:-.045em; line-height:1.15; margin-bottom:24px; }
 .skip-link { position:fixed; top:-100px; left:20px; background:white; padding:14px; z-index:100; }.skip-link:focus { top:10px; }
 @media (min-width:1600px) { .hero-visual>img { height:650px; } }
-@media (max-width:1050px) { .wrap { width:calc(100% - 56px); } .topline { padding-inline:28px; } .header { gap:24px; } .header nav { gap:18px; } .header-actions { gap:18px; } .hero { gap:30px; }.hero-visual>img { height:520px; }.trust { gap:30px; } }
-@media (max-width:760px) { .wrap { width:calc(100% - 40px); }.topline { padding:8px 20px; }.topline>span { letter-spacing:.05em; font-size:.6rem; max-width:50%; }.header { min-height:98px; gap:15px; }.brand { width:140px; height:60px; }.header .brand { width:160px; height:64px; }.header nav { display:none; }.header-actions { gap:12px; }.header .button { font-size:.75rem; padding:10px 12px; gap:5px; }.header .button svg { display:none; }.hero { grid-template-columns:1fr; padding-top:0; gap:15px; padding-bottom:28px; }.hero-copy { padding:30px 0 20px; }.eyebrow { font-size:.65rem; margin-bottom:19px; }h1 { font-size:clamp(2.8rem,9vw,4rem); }.intro { max-width:100%; }.hero-note { margin-top:27px; }.hero-visual>img { height:420px; }.experience { top:24px; left:-10px; padding:13px 19px; }.trust { flex-direction:column; gap:12px; align-items:center; padding-block:22px; }.section { padding-block:64px; } }
+@media (max-width:1050px) { .wrap { width:calc(100% - 56px); } .topline { padding-inline:28px; } .header { min-height:140px; gap:24px; } .header .brand { width:280px; height:112px; } .header nav { gap:18px; } .header-actions { gap:18px; } .hero { gap:30px; }.hero-visual>img { height:520px; }.trust { gap:30px; } }
+@media (max-width:760px) { .wrap { width:calc(100% - 40px); }.topline { padding:8px 20px; }.topline>span { letter-spacing:.05em; font-size:.6rem; max-width:50%; }.header { min-height:120px; gap:15px; }.brand { width:140px; height:60px; }.header .brand { width:220px; height:88px; }.header nav { display:none; }.header-actions { gap:12px; }.header .button { font-size:.75rem; padding:10px 12px; gap:5px; }.header .button svg { display:none; }.hero { grid-template-columns:1fr; padding-top:0; gap:15px; padding-bottom:28px; }.hero-copy { padding:30px 0 20px; }.eyebrow { font-size:.65rem; margin-bottom:19px; }h1 { font-size:clamp(2.8rem,9vw,4rem); }.intro { max-width:100%; }.hero-note { margin-top:27px; }.hero-visual>img { height:420px; }.experience { top:24px; left:-10px; padding:13px 19px; }.trust { flex-direction:column; gap:12px; align-items:center; padding-block:22px; }.section { padding-block:64px; } }
+@media (max-width:360px) { .header { min-height:108px; }.header .brand { width:185px; height:74px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }* { transition:none !important; animation:none !important; } }
 .section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:50px; margin-bottom:40px; }
 .section-heading h2 { margin-bottom:0; max-width:640px; }.section-heading .intro { max-width:390px; margin-bottom:0; }
