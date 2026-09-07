@@ -3,12 +3,12 @@ import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 
 // A plain static preview: no framework server or client-side route fallback.
-const root=resolve('dist/client');
+const root=resolve(process.env.PREVIEW_ROOT || 'dist/client');
 const index=await readFile(resolve(root,'index.html'),'utf8');
 const canonical=index.match(/rel="canonical" href="([^"]+)"/)?.[1];
 if(!canonical) throw new Error('Build the site before starting the static preview.');
 const base=new URL(canonical).pathname.replace(/\/$/,'');
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.webp':'image/webp','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.xml':'application/xml'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.webp':'image/webp','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.xml':'application/xml','.ttf':'font/ttf','.woff2':'font/woff2'};
 const server=createServer(async(req,res)=>{
  if(!['GET','HEAD'].includes(req.method)) {res.writeHead(405);res.end();return;}
  try {

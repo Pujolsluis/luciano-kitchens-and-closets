@@ -1,7 +1,10 @@
 import '../globals.css';
+import '../staging.css';
+import { routeFor } from '@/lib/routes';
 export default async function RootLayout({ children, params }: {
   children: React.ReactNode; params: Promise<{ slug?: string[] }>;
 }) {
   const { slug } = await params;
-  return <html lang={slug?.[0] === 'es' ? 'es' : 'en'}><body>{children}</body></html>;
+  const route=routeFor(slug);
+  return <html lang={route?.lang || 'en'}><body className={route?.staging ? 'brand-staging' : undefined} data-palette={route?.staging || undefined}>{children}</body></html>;
 }

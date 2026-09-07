@@ -38,6 +38,10 @@ The pinned starter exporter redirects trailing-slash routes while prerendering. 
 
 English lives at `/`; Spanish at `/es/`. Existing kitchen and closet gallery paths remain at `/2022/01/kitchens/` and `/2022/01/closets/`, with Spanish equivalents under `/es/`. Legacy home section anchors and the old `/sample-page/` link are retained.
 
+## Shared staging review
+
+The Pages workflow also publishes a review-only, noindex staging area at `/staging/`, with a dropdown that compares black/gold, black/peach, and white/navy directions. It is served from the same Pages deployment as the production homepage, while remaining absent from the sitemap, Analytics, and SurveyMonkey embeds. See [brand staging notes](docs/brand-staging.md).
+
 Images are real project assets reused from the business website with the owner's approval. Testimonials are attributed excerpts; Spanish excerpts are labeled as translations. Branding, photography, and customer quotations are not offered under an open-source license.
 
 ## Hosting configuration
