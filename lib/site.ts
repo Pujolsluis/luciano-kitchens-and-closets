@@ -1,5 +1,8 @@
 export type Language = 'en' | 'es';
 export type Gallery = 'kitchens' | 'closets';
+export const palettes = ['black-gold','black-peach','white-navy'] as const;
+export type PreviewStyle = false | typeof palettes[number];
+export const previewPrefix = (style:PreviewStyle=false) => style ? '/staging'+(style==='black-gold'?'':'/'+style) : '';
 export const business = {
   name: 'Luciano Custom Kitchens & Closets',
   phone: '(863) 732-8482', telephone: '+18637328482',
@@ -12,8 +15,8 @@ export const business = {
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 export const siteOrigin = process.env.NEXT_PUBLIC_SITE_ORIGIN || 'https://pujolsluis.github.io';
 export const path = (value: string) => basePath + value;
-export const homePath = (lang: Language) => lang === 'es' ? '/es/' : '/';
-export const galleryPath = (lang: Language, gallery: Gallery) => (lang === 'es' ? '/es' : '') + '/2022/01/' + gallery + '/';
+export const homePath = (lang: Language, staging:PreviewStyle=false) => previewPrefix(staging) + (lang === 'es' ? '/es/' : '/');
+export const galleryPath = (lang: Language, gallery: Gallery, staging:PreviewStyle=false) => previewPrefix(staging) + (lang === 'es' ? '/es' : '') + '/2022/01/' + gallery + '/';
 export const imagePath = (name: string, width = 1280) => path('/images/' + name + '-' + width + '.webp');
 export const heroImage = 'kitchen-whitecs-luciano-kitchens-and-closets';
 export const closetImage = 'luciano_custom_walkin_closet_white_lights_front';

@@ -13,7 +13,9 @@
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "test": "node scripts/verify.mjs",
-    "test:deployments": "node scripts/check-deployments.mjs"
+    "test:deployments": "node scripts/check-deployments.mjs",
+    "staging": "node scripts/staging.mjs",
+    "staging:build": "node scripts/staging.mjs --build-only"
   },
   "dependencies": {
     "react": "19.2.8",

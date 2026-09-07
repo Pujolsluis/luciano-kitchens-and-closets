@@ -14,10 +14,10 @@ for(const r of routes.filter(r=>r.slug.length)) {
  }
 }
 const url=(slug)=>origin+base+'/'+(slug.length?slug.join('/')+'/':'');
-const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+routes.map(r=>'  <url><loc>'+url(r.slug)+'</loc></url>').join('\n')+'\n</urlset>\n';
+const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+routes.filter(r=>!r.staging).map(r=>'  <url><loc>'+url(r.slug)+'</loc></url>').join('\n')+'\n</urlset>\n';
 writeFileSync(output+'/sitemap.xml',xml);
 const production=['https://www.lucianokitchensandclosets.com','https://lucianokitchensandclosets.com'].includes(origin);
-writeFileSync(output+'/robots.txt',production?'User-agent: *\nAllow: /\nSitemap: '+origin+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
+writeFileSync(output+'/robots.txt',production?'User-agent: *\nAllow: /\nDisallow: '+base+'/staging/\nSitemap: '+origin+base+'/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 writeFileSync(output+'/.nojekyll','');
 const home=base+'/';
 mkdirSync(output+'/sample-page',{recursive:true});
