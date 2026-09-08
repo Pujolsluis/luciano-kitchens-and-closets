@@ -40,6 +40,7 @@
  display:flex; justify-content:space-between; gap:16px; padding:9px 48px;
  background:var(--palette-soft); color:var(--brand-black); font-size:14px; line-height:1.5;
 }
+.brand-staging .staging-controls[data-clean-preview] .staging-review-chrome { display:none; }
 .brand-staging .staging-notice a { text-decoration:underline; text-underline-offset:3px; }
 .brand-staging .staging-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px 18px; }
 .brand-staging .palette-picker {

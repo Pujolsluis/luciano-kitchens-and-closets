@@ -4,6 +4,7 @@ import { Header, Home, Contact, Footer, Privacy } from '@/components/website';
 import { Analytics } from '@/components/analytics';
 import { GalleryGrid } from '@/components/gallery';
 import { PalettePicker } from '@/components/palette-picker';
+import { StagingControls } from '@/components/staging-controls';
 import { galleryPhotos } from '@/lib/gallery-data';
 import { content } from '@/lib/content';
 import { routes, routeFor, alternatePath } from '@/lib/routes';
@@ -44,10 +45,10 @@ export default async function Page({params}:Props) {
   sameAs:[business.instagram,business.facebook,business.reviews],
  };
  return <>
-  {staging && <>
-   <aside className="staging-notice"><span>{lang==='en'?'Staging preview · Phone and email links contact the business':'Vista de preproducción · Los enlaces de teléfono y correo contactan al negocio'}</span><span className="staging-links"><a href={'tel:'+business.telephone}>{business.phone}</a><a href={'mailto:'+business.email}>{business.email}</a><a href={path(alternatePath(lang,kind))}>{lang==='en'?'Compare current design':'Comparar diseño actual'} ↗</a></span></aside>
+  {staging && <StagingControls>
+   <aside className="staging-notice"><span>{lang==='en'?'Local preview · Phone and email links contact the business':'Vista local · Los enlaces de teléfono y correo contactan al negocio'} <small>{lang==='en'?'Press ` to hide review controls':'Pulsa ` para ocultar los controles'}</small></span><span className="staging-links"><a href={'tel:'+business.telephone}>{business.phone}</a><a href={'mailto:'+business.email}>{business.email}</a><a href={path(alternatePath(lang,kind))}>{lang==='en'?'Compare current design':'Comparar diseño actual'} ↗</a></span></aside>
    <PalettePicker lang={lang} current={staging} options={palettes.map((palette)=>({palette,href:path(alternatePath(lang,kind,palette))}))}/>
-  </>}
+  </StagingControls>}
   <Header lang={lang} kind={kind} staging={staging}/>
   <main id="main">
    {kind==='home'?<Home lang={lang} staging={staging}/>:kind==='privacy'?<Privacy lang={lang} staging={staging}/>:<>
