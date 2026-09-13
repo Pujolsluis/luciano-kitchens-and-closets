@@ -10,6 +10,26 @@ concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
   build:
     runs-on: ubuntu-latest
     env:
@@ -23,19 +43,38 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
       - name: Configure custom-domain paths
         if: vars.CUSTOM_DOMAIN == 'true'
         run: echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
       - run: npm run build
-      - run: npm test
-      - uses: actions/upload-pages-artifact@v5
+      - uses: actions/upload-artifact@v4
         with:
+          name: site
           path: dist/client
+          include-hidden-files: true
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_ORIGIN: ${{ vars.SITE_ORIGIN || 'https://pujolsluis.github.io' }}
+      NEXT_PUBLIC_BASE_PATH: /luciano-kitchens-and-closets
+      PUBLISH_STAGING: 'true'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist/client
+      - name: Configure custom-domain paths
+        if: vars.CUSTOM_DOMAIN == 'true'
+        run: echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
+      - run: npm test
   deploy:
     if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true'
-    needs: build
+    needs: [lint, typecheck, build, test]
     permissions:
       pages: write
       id-token: write
@@ -44,5 +83,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist/client
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/client
       - uses: actions/deploy-pages@v5
         id: deployment
