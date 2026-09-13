@@ -47,7 +47,7 @@ jobs:
         if: vars.CUSTOM_DOMAIN == 'true'
         run: echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
       - run: npm run build
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0 # v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: site
           path: dist/client
